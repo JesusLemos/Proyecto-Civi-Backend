@@ -17,5 +17,11 @@ $uri = urldecode(
 if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
+// $model = Solicitud::find($id);
 
+//     if($model->relation()->exists()) {
+//         echo "funciona";
+//         }else{
+//             echo "no funciona";
+        // }
 require_once __DIR__.'/public/index.php';
