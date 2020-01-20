@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitud extends Model
 {
     //
-    public function usuario(){
-        return $this->belongsToMany('App\ems', 'prueba');
+    // protected $table = 'solicitudes';
+    public function usuarios(){
+        return $this->belongsToMany('App\Usuario');
     }
    
 
