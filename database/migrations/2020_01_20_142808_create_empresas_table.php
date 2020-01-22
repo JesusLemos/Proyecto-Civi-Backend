@@ -15,9 +15,9 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('nif',9);
+            $table->integer('nif');
             $table->longText('foto');
-            $table->string('50');
+            $table->string('nombre', 0);
             $table->longText('descripcion');
             $table->unsignedBigInteger('id_categoria');
             $table->index('id_categoria');
