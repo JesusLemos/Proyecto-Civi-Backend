@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class OfertasCiudadController extends Controller
+class OfertasCiudadsController extends Controller
 {
     public function ofertasCiudades()
     {

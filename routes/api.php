@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/prueba', 'PruebaController@getAll');
 Route::get('/ofertasordenadas', 'OfertasPopularidadController@ofertasOrdenadas');
-Route::get('/ofertasporciudades', 'OfertasCiudadController@ofertasCiudades');
-Route::get('/ofertasporciudad/{nombreciudad}', 'OfertasCiudadController@ofertasCiudad');
+Route::get('/ofertasporciudades', 'OfertasCiudadsController@ofertasCiudades');
+Route::get('/ofertasporciudad/{nombreciudad}', 'OfertasCiudadsController@ofertasCiudad');
