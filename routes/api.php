@@ -17,8 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Route::get('/prueba', 'PruebaController@getAll');
-Route::get('/ofertasordenadas', 'OfertasPopularidadController@ofertasOrdenadas');
-Route::get('/ofertasporciudades', 'OfertasCiudadsController@ofertasCiudades');
-Route::get('/ofertasporciudad/{nombreciudad}', 'OfertasCiudadsController@ofertasCiudad');
-Route::get('/ofertasporanuncio', 'OfertasAnunciosController@ofertasAnuncios');
-Route::get('/ofertasporpuesto/{puesto}', 'OfertasPuestosController@ofertasPuesto');
+Route::group(['middleware'=>['cors']], function (){
+    Route::get('/ofertasordenadas', 'OfertasPopularidadController@ofertasOrdenadas');
+    Route::get('/ofertasporciudades', 'OfertasCiudadsController@ofertasCiudades');
+    Route::get('/ofertasporciudad/{nombreciudad}', 'OfertasCiudadsController@ofertasCiudad');
+    Route::get('/ofertasporanuncio', 'OfertasAnunciosController@ofertasAnuncios');
+    Route::get('/ofertasporpuesto/{puesto}', 'OfertasPuestosController@ofertasPuesto');
+
+});

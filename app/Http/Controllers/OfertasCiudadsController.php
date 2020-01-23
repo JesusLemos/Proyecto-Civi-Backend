@@ -14,7 +14,7 @@ class OfertasCiudadsController extends Controller
         try {
             $ofertasPorCiudad = DB::table('oferta_trabajos')
             ->join('ciudads', 'oferta_trabajos.id_ciudad', '=', 'ciudads.id')
-            ->orderBy('ciudads.nobre')
+            ->orderBy('ciudads.nombre')
             ->get();
 
         return $ofertasPorCiudad;
