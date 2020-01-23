@@ -17,8 +17,8 @@ class CreateEmpresasTable extends Migration
             $table->bigIncrements('id');
             $table->integer('nif');
             $table->longText('foto');
-            $table->string('nombre', 0);
-            $table->longText('descripcion');
+            $table->string('nombre_empresa');
+            $table->longText('descripcion_empresa');
             $table->unsignedBigInteger('id_categoria');
             $table->index('id_categoria');
             $table->timestamps();
