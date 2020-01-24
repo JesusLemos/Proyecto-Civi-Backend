@@ -17,11 +17,11 @@ class CreateSolicitudsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_usuario');
             $table->unsignedBigInteger('id_oferta_trabajo');
-            $table->boolean('estado');
+            $table->string('estado');
             $table->index(['id_usuario', 'id_oferta_trabajo']);
             $table->foreign('id_usuario')->references('id')->on('usuarios');
             $table->foreign('id_oferta_trabajo')->references('id')->on('oferta_trabajos');
-            
+
             $table->timestamps();
         });
     }

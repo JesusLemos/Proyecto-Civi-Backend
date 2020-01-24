@@ -21,9 +21,9 @@ class CreateEmpresasTable extends Migration
             $table->longText('descripcion_empresa');
             $table->unsignedBigInteger('id_categoria');
             $table->index('id_categoria');
+            $table->rememberToken();
             $table->timestamps();
             $table->foreign('id_categoria')->references('id')->on('categoria_trabajos');
-            
         });
     }
 
