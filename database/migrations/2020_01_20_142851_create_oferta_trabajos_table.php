@@ -27,7 +27,7 @@ class CreateOfertaTrabajosTable extends Migration
             $table->timestamps();
             $table->foreign('id_empresa')->references('id')->on('empresas');
             $table->foreign('id_categoria')->references('id')->on('categoria_trabajos');
-            $table->foreign('id_ciudad')->references('id')->on('ciudads');
+            $table->foreign('id_ciudad')->references('id')->on('ciudades');
 
             
         });
