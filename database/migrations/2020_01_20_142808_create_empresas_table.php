@@ -15,7 +15,7 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('nif');
+            $table->string('nif');
             $table->longText('foto');
             $table->string('nombre_empresa');
             $table->longText('descripcion_empresa');

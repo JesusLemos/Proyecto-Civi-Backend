@@ -15,7 +15,7 @@ class CreateOfertaTrabajosTable extends Migration
     {
         Schema::create('oferta_trabajos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo',150);
+            $table->string('titulo', 150);
             $table->longText('descripcion_oferta');
             $table->integer('popularidad');
             $table->boolean('anuncio');
@@ -28,8 +28,6 @@ class CreateOfertaTrabajosTable extends Migration
             $table->foreign('id_empresa')->references('id')->on('empresas');
             $table->foreign('id_categoria')->references('id')->on('categoria_trabajos');
             $table->foreign('id_ciudad')->references('id')->on('ciudades');
-
-            
         });
     }
 

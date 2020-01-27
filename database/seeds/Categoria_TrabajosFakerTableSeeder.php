@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class Categoria_TrabajosTableSeeder extends Seeder
+use Faker\Factory as Faker;
+
+class Categoria_TrabajosFakerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +14,10 @@ class Categoria_TrabajosTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 50; $i++) {
+        $faker = Faker::create('es_ES');
+        foreach (range(1, 20) as $index) {
             DB::table('categoria_trabajos')->insert([
-                'nombre' => Str::random(10)
+                'nombre' => $faker->jobTitle,
             ]);
         }
     }
