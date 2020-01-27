@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CiudadesTableSeeder extends Seeder
+class Categoria_TrabajosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class CiudadesTableSeeder extends Seeder
     public function run()
     {
         for ($i = 0; $i < 50; $i++) {
-            DB::table('ciudades')->insert([
+            DB::table('categoria_trabajos')->insert([
                 'nombre' => Str::random(10)
             ]);
         }
