@@ -24,6 +24,7 @@ return array(
     'App\\Http\\Controllers\\OfertasPuestosController' => $baseDir . '/app/Http/Controllers/OfertasPuestosController.php',
     'App\\Http\\Controllers\\PruebaController' => $baseDir . '/app/Http/Controllers/PruebaController.php',
     'App\\Http\\Controllers\\SolicitarOfertaController' => $baseDir . '/app/Http/Controllers/SolicitarOfertaController.php',
+    'App\\Http\\Controllers\\VerPerfilController' => $baseDir . '/app/Http/Controllers/VerPerfilController.php',
     'App\\Http\\Controllers\\VerSolicitudesController' => $baseDir . '/app/Http/Controllers/VerSolicitudesController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
