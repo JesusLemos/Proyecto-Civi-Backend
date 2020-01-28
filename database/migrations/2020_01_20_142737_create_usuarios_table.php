@@ -17,6 +17,8 @@ class CreateUsuariosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre_usuario', 25);
             $table->string('apellido', 25);
+            $table->string('email');
+            $table->string('contrasenia');
             $table->string('dni');
             $table->longText('descripcion');
             $table->string('telefono');

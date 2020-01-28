@@ -19,6 +19,8 @@ class UsuariosTableFakerSeeder extends Seeder
             DB::table('usuarios')->insert([
                 'nombre_usuario' => $faker->firstName,
                 'apellido' => $faker->lastName,
+                'email' => $faker->freeEmail,
+                'contrasenia' => $faker->password,
                 'dni' => $faker->dni,
                 'descripcion' => $faker->sentence($nbWords = 6, $variableNbWords = true),
                 'telefono' => $faker->mobileNumber,
