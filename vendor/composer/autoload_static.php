@@ -405,6 +405,7 @@ class ComposerStaticInite299c98c00258cda481db5f0ef8970de
         'App\\Http\\Controllers\\OfertasPuestosController' => __DIR__ . '/../..' . '/app/Http/Controllers/OfertasPuestosController.php',
         'App\\Http\\Controllers\\PruebaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PruebaController.php',
         'App\\Http\\Controllers\\SolicitarOfertaController' => __DIR__ . '/../..' . '/app/Http/Controllers/SolicitarOfertaController.php',
+        'App\\Http\\Controllers\\VerPerfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/VerPerfilController.php',
         'App\\Http\\Controllers\\VerSolicitudesController' => __DIR__ . '/../..' . '/app/Http/Controllers/VerSolicitudesController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
