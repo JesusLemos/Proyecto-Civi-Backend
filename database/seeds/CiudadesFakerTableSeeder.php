@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CiudadesTableSeeder extends Seeder
+use Faker\Factory as Faker;
+
+class CiudadesFakerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +14,10 @@ class CiudadesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 50; $i++) {
+        $faker = Faker::create('es_ES');
+        foreach (range(1, 20) as $index) {
             DB::table('ciudades')->insert([
-                'nombre' => Str::random(10)
+                'nombre' => $faker->city,
             ]);
         }
     }
