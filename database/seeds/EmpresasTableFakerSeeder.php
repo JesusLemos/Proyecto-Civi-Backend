@@ -19,6 +19,8 @@ class EmpresasTableFakerSeeder extends Seeder
             DB::table('empresas')->insert([
                 'nif' => $faker->dni,
                 'foto' => $faker->imageUrl($width = 640, $height = 480),
+                'email' => $faker->freeEmail,
+                'contrasenia' => $faker->password,
                 'nombre_empresa' => $faker->company,
                 'descripcion_empresa' => $faker->bs,
                 'id_categoria' => $faker->numberBetween($min = 1, $max = 10),
