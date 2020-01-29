@@ -20,7 +20,7 @@ class SolicitarOfertaController extends Controller
        
         if($comprobarUsuarioExistente){
 
-            // if($header === $comprobarUsuarioExistente[0]->remember_token){
+            
                 return Solicitud::create([ 
                     'id_usuario'=>$comprobarUsuarioExistente[0]->id,
                     'id_oferta_trabajo'=>$comprobarPuestoTrabajo[0]->id,
@@ -31,4 +31,4 @@ class SolicitarOfertaController extends Controller
             }
       
     }
-// }
+
