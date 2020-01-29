@@ -6,7 +6,8 @@ Route::group(['middleware'=>['cors']], function (){
   Route::group(['middleware'=>['tokenUsuario']], function (){
   Route::post('/solicitaroferta', 'SolicitarOfertaController@solicitarOferta');
   Route::get('/versolicitudes/{id}', 'VerSolicitudesController@VerSolicitudesUsuario');
-  });
+  Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilUsuario');
+});
   Route::post('/registro', 'Auth\RegisterUsuarioController@create');
   Route::post('/validar', 'Auth\RegisterUsuarioController@validator');
   Route::post('/login', 'Auth\LoginUsuarioController@loginUsuario');
