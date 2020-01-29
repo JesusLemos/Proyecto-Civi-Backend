@@ -50,7 +50,7 @@ class LoginUsuarioController extends Controller
             $comprobarUsuarioExistente = DB::table('usuarios')
             ->where('email', '=', $body{'email'})
             ->get();
-        if($comprobarUsuarioExistente !==[]){
+        if(count($comprobarUsuarioExistente) === 0){
             return response('Contrasenia o correo invalido');
         } 
             
@@ -68,7 +68,7 @@ class LoginUsuarioController extends Controller
                 ->update(['remember_token'=>$generarToken]);
                return 'Te has conectado correctamente';
            }else{
-               return  response('Algo ha fallado');
+               return  response('Contrasenia o correo invalido');
            }
           
             //code...
