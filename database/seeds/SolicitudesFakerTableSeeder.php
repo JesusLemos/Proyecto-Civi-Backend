@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 
 use Faker\Factory as Faker;
 
-class SolicitudsTableFakerSeeder extends Seeder
+class SolicitudesFakerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

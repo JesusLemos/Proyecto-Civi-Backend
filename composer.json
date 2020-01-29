@@ -48,7 +48,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "regenerate-db": "@composer dump-autoload && php artisan migrate:fresh && php artisan db:seed --class=CiudadesFakerTableSeeder && php artisan db:seed --class=Categoria_TrabajosFakerTableSeeder && php artisan db:seed --class=UsuariosTableFakerSeeder && php artisan db:seed --class=EmpresasTableFakerSeeder && php artisan db:seed --class=Oferta_TrabajosTableFakerSeeder && php artisan db:seed --class=SolicitudsTableFakerSeeder",
+        "regenerate-db": "@composer dump-autoload && php artisan migrate:fresh && php artisan db:seed ",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
