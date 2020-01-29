@@ -9,6 +9,6 @@ Route::group(['middleware'=>['cors']], function (){
 
   Route::post('/registro', 'Auth\RegisterEmpresaController@create');
   // Route::post('/validar', 'Auth\RegisterUsuarioController@validator');
-  // Route::post('/login', 'Auth\LoginUsuarioController@loginUsuario');
+  Route::post('/login', 'Auth\LoginEmpresaController@loginEmpresa');
   
 });

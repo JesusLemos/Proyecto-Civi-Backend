@@ -12,7 +12,7 @@ class VerSolicitudesController extends Controller
     public function VerSolicitudesEmpresas($id){
        
         $TodasLasSolicitudes= DB::table('solicitudes')
-        ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id')
+        ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
         ->join('usuarios', 'usuarios.id', '=', 'solicitudes.id_usuario' )
         ->where('oferta_trabajos.id_empresa', '=', $id)
          ->select('solicitudes.id as solicitudes_num_solicitud'
@@ -40,9 +40,9 @@ class VerSolicitudesController extends Controller
     }
     public function VerSolicitudesUsuario($id){
         $TodasLasSolicitudes= DB::table('solicitudes')
-        ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id')
+        ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
         ->join('usuarios', 'usuarios.id', '=', 'solicitudes.id_usuario' )
-        ->where('usuarios.id', '=', $id)
+        ->where('solicitudes.id_usuario', '=', $id)
          ->select('solicitudes.id as solicitudes_num_solicitud'
          ,'solicitudes.id_usuario as solicitudes_usuario'
          ,'solicitudes.id_oferta_trabajo as solicitudes_id_oferta_trabajo'
