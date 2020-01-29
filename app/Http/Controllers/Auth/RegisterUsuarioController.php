@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class RegisterUsuarioController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -100,60 +100,7 @@ public function rules(){
      */
     protected function create(Request $data)
     {
-        // try {
-
-        //     $validator = \Validator::make($data->all(), [
-        //         'nombre_usuario' => ['required' , 'string','max:25', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'apellido' => ['required' , 'string','max:25', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'email' => ['required','string','email','max:255','unique:usuarios', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'contrasenia' => ['required','min:8','string', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'dni' => ['required','string','max:255', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'descripcion' => ['required','string','max:255', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'telefono' => ['required','string','max:255', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'direccion' => ['required','string','max:255', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'foto' => ['required','string','max:255', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }],
-        //         'fecha_nacimiento' => ['required','date', function($attribute, $value, $file){
-        //             if($value==='foo'){
-        //                 $fail($attribute.'is invalid');
-        //             }
-        //         }]
-        //     ]);
+     
         try{
             $data->validate([
                 'nombre_usuario' => 'required|string|max:25',
@@ -177,9 +124,9 @@ public function rules(){
                 'telefono'=>$data{"telefono"},
                 'direccion'=>$data{"direccion"},
                 'foto'=>$data{"foto"},
-                'contrasenia'=>$data{"contrasenia"},
+                'contrasenia'=>encrypt($data{"contrasenia"}),
                 'fecha_nacimiento'=>$data{"fecha_nacimiento"},
-                'remember_token'=>$data{"remember_token"}
+               
             ]
     
              );

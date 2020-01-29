@@ -25,7 +25,7 @@ class CreateUsuariosTable extends Migration
             $table->string('direccion')->required();
             $table->longText('foto')->required();
             $table->dateTime('fecha_nacimiento')->required();
-            $table->rememberToken();
+            $table->string('remember_token')->nullable();
             $table->timestamps();
         });
     }

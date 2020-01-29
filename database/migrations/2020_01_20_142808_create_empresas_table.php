@@ -23,7 +23,7 @@ class CreateEmpresasTable extends Migration
             $table->longText('descripcion_empresa');
             $table->unsignedBigInteger('id_categoria');
             $table->index('id_categoria');
-            $table->rememberToken();
+            $table->string('remember_token')->nullable();
             $table->timestamps();
             $table->foreign('id_categoria')->references('id')->on('categoria_trabajos');
         });
