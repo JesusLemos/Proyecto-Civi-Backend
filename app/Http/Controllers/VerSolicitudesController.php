@@ -14,11 +14,13 @@ class VerSolicitudesController extends Controller
         $TodasLasSolicitudes= DB::table('solicitudes')
         ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
         ->join('usuarios', 'usuarios.id', '=', 'solicitudes.id_usuario' )
-        ->where('oferta_trabajos.id_empresa', '=', $id)
+        ->where('oferta_trabajos.id_empresa', '=', $id )
          ->select('solicitudes.id as solicitudes_num_solicitud'
          ,'solicitudes.id_usuario as solicitudes_usuario'
          ,'solicitudes.id_oferta_trabajo as solicitudes_id_oferta_trabajo'
          ,'solicitudes.estado as solicitudes_estado'
+         ,'solicitudes.visible_empresa as solicitudes_visible_empresa'
+         ,'solicitudes.visible_usuario as solicitudes_visible_usuario'
          ,'oferta_trabajos.titulo as oferta_trabajos_titulo'
          ,'oferta_trabajos.descripcion_oferta as oferta_trabajos_descripcion'
          ,'oferta_trabajos.popularidad as oferta_trabajos_popularidad'
@@ -27,6 +29,8 @@ class VerSolicitudesController extends Controller
          ,'oferta_trabajos.id_categoria as oferta_trabajos_categoria'
          ,'oferta_trabajos.id_ciudad as oferta_trabajos_ciudad'
          ,'oferta_trabajos.fecha_publicacion as oferta_trabajos_fecha_publicacion'
+        ,'oferta_trabajos.visible_usuario as oferta_trabajos_visible_usuario'
+         ,'oferta_trabajos.visible_empresa as oferta_trabajos_visible_empresa'
          ,'usuarios.nombre_usuario as usuarios_nombre'
          ,'usuarios.apellido as usuarios_apellido'
          ,'usuarios.descripcion as usuarios_descripcion'
