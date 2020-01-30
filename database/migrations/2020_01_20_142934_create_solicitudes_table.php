@@ -19,6 +19,8 @@ class CreateSolicitudesTable extends Migration
             $table->unsignedBigInteger('id_oferta_trabajo');
             $table->string('estado');
             $table->index(['id_usuario', 'id_oferta_trabajo']);
+            $table->boolean('visible_usuario');
+            $table->boolean('visible_empresa');
             $table->foreign('id_usuario')->references('id')->on('usuarios');
             $table->foreign('id_oferta_trabajo')->references('id')->on('oferta_trabajos');
 
