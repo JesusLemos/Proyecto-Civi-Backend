@@ -8,6 +8,7 @@ Route::group(['middleware'=>['cors']], function (){
   Route::get('/versolicitudes/{id}', 'VerSolicitudesController@VerSolicitudesEmpresas');
   Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilEmpresa');
   });
+  Route::post('/cambiarsolicitud', 'AdministrarSolicitudesEmpresaController@AdministrarSolicitud');
   Route::post('/registro', 'Auth\RegisterEmpresaController@create');
   // Route::post('/validar', 'Auth\RegisterUsuarioController@validator');
   Route::post('/login', 'Auth\LoginEmpresaController@loginEmpresa');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdministrarSolicitudesUsuarios extends Controller
+class AdministrarSolicitudesUsuariosController extends Controller
 {
     public function AdministrarSolicitud(Request $request){
         //id solicitud y id_usuario
