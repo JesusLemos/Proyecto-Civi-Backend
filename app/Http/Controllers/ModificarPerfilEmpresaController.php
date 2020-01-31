@@ -14,8 +14,8 @@ class ModificarPerfilEmpresaController extends Controller
         ->where('id', '=', $empresa{'id'})
         ->get();
 
-        
-        if(count($comprobarEmpresa) === 1){
+
+        if(count($comprobarEmpresa) === 1 ){
         DB::table('empresas')
         ->where('id', '=', $empresa{'id'})
         ->update(['nif' =>$empresa{'nif'},
