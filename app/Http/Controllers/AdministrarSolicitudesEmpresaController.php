@@ -25,7 +25,7 @@ class AdministrarSolicitudesEmpresaController extends Controller
             ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
             ->where('solicitudes.id', '=', $numSolicitud{'id'})
             ->where('oferta_trabajos.id_empresa', '=', $numSolicitud{'id_empresa'})
-            ->update(['estado' =>'Rechazado']);
+            ->update(['estado' =>$numSolicitud{'estado'}]);
             return response('Se ha completado corretamente');
         }
             // return $comprobarEstado;

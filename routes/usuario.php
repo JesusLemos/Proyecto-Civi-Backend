@@ -4,8 +4,9 @@ use App\Http\Controllers\PruebaController;
 Route::group(['middleware'=>['cors']], function (){
   //Registro, Login, Logout, Perfil, Modificar Perfil, Solicitar Oferta
   Route::group(['middleware'=>['tokenUsuario']], function (){
+    //Solicita una oferta
   Route::post('/solicitaroferta', 'SolicitarOfertaController@solicitarOferta');
-  Route::post('/cambiarsolicitud', 'AdministrarSolicitudesUsuariosController@AdministrarSolicitud');
+  Route::post('/rechazarsolicitud', 'AdministrarSolicitudesUsuariosController@AdministrarSolicitud');
   Route::get('/versolicitudes/{id}', 'VerSolicitudesController@VerSolicitudesUsuario');
   Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilUsuario');
 });
