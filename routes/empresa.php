@@ -16,6 +16,7 @@ Route::group(['middleware'=>['cors']], function (){
   Route::post('/borrarsolicitud', 'EliminarSolicitudEmpresa Controller@borrarSolicitud');
   Route::post('/borrarofertatrabajo', 'EliminarOfertaTrabajoEmpresaController@borrarOfertaTrabajo');
   });
+  Route::post('/desconectarempresa', 'Auth\LogoutEmpresaController@DesconectarEmpresa');
   //Registra una empresa
   Route::post('/registro', 'Auth\RegisterEmpresaController@create');
   //Conectarse con una empresa

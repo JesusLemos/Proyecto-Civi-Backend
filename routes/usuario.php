@@ -17,8 +17,8 @@ Route::group(['middleware'=>['cors']], function (){
   Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilUsuario');
   Route::post('/modificarperfil', 'ModificarPerfilUsuarioController@CambiarPerfilUsuario');
 
+  Route::post('/desconectarusuario', 'Auth\LogoutUsuarioController@DesconectarUsuario');
 });
-Route::post('/desconectarusuario', 'Auth\LogoutUsuarioController@DesconectarUsuario');
     //Se crea un usuario
   Route::post('/registro', 'Auth\RegisterUsuarioController@create');
   //Se logea un usuario
