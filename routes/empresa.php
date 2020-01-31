@@ -13,6 +13,7 @@ Route::group(['middleware'=>['cors']], function (){
   //Acepta o rechaza solicitudes
   Route::post('/cambiarsolicitud', 'AdministrarSolicitudesEmpresaController@AdministrarSolicitud');
   Route::post('/modificarperfil', 'ModificarPerfilEmpresaController@CambiarPerfilEmpresa');
+  Route::post('/borrarsolicitud', 'EliminarSolicitudEmpresa Controller@borrarSolicitud');
   });
   //Registra una empresa
   Route::post('/registro', 'Auth\RegisterEmpresaController@create');
