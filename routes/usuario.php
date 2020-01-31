@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Http\Controllers\PruebaController;
+
 Route::group(['middleware'=>['cors']], function (){
   //Registro, Login, Logout, Perfil, Modificar Perfil, Solicitar Oferta
   Route::group(['middleware'=>['tokenUsuario']], function (){
@@ -15,7 +16,7 @@ Route::group(['middleware'=>['cors']], function (){
   //Muestra el perfil de un usuario
   Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilUsuario');
 });
-
+Route::post('/modificarperfil', 'ModificarPerfilUsuarioController@CambiarPerfilUsuario');
     //Se crea un usuario
   Route::post('/registro', 'Auth\RegisterUsuarioController@create');
   //Se logea un usuario

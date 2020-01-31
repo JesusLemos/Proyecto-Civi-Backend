@@ -12,8 +12,8 @@ Route::group(['middleware'=>['cors']], function (){
   Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilEmpresa');
   //Acepta o rechaza solicitudes
   Route::post('/cambiarsolicitud', 'AdministrarSolicitudesEmpresaController@AdministrarSolicitud');
-  });
   Route::post('/modificarperfil', 'ModificarPerfilEmpresaController@CambiarPerfilEmpresa');
+  });
   //Registra una empresa
   Route::post('/registro', 'Auth\RegisterEmpresaController@create');
   //Conectarse con una empresa
