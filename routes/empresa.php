@@ -5,21 +5,21 @@ Route::group(['middleware'=>['cors']], function (){
   //Registro, Login, Logout, Perfil, Modificar Perfil, Crear Ofertas
   Route::group(['middleware'=>['tokenEmpresa']], function (){
     //Crea ofertas por parte de la empresa
-  Route::post('/crearoferta', 'CreacionOfertaController@CrearOferta');
+  Route::post('/crearoferta', 'EmpresaController@CrearOferta');
     //Ver todas las solicitudes por parte de la empresa
-  Route::get('/versolicitudes/{id}', 'VerSolicitudesController@VerSolicitudesEmpresas');
+  Route::get('/versolicitudes/{id}', 'EmpresaController@VerSolicitudesEmpresas');
   //ver perfil de la empresa
-  Route::get('/verperfil/{id}', 'VerPerfilController@verPerfilEmpresa');
+  Route::get('/verperfil/{id}', 'EmpresaController@verPerfilEmpresa');
   //Acepta o rechaza solicitudes
-  Route::post('/cambiarsolicitud', 'AdministrarSolicitudesEmpresaController@AdministrarSolicitud');
-  Route::post('/modificarperfil', 'ModificarPerfilEmpresaController@CambiarPerfilEmpresa');
-  Route::post('/borrarsolicitud', 'EliminarSolicitudEmpresa Controller@borrarSolicitud');
-  Route::post('/borrarofertatrabajo', 'EliminarOfertaTrabajoEmpresaController@borrarOfertaTrabajo');
+  Route::post('/cambiarsolicitud', 'EmpresaController@AdministrarSolicitud');
+  Route::post('/modificarperfil', 'EmpresaController@CambiarPerfilEmpresa');
+  Route::post('/borrarsolicitud', 'EmpresaController Controller@borrarSolicitud');
+  Route::post('/borrarofertatrabajo', 'EmpresaController@borrarOfertaTrabajo');
+  Route::post('/desconectarempresa', 'EmpresaController@DesconectarEmpresa');
   });
-  Route::post('/desconectarempresa', 'Auth\LogoutEmpresaController@DesconectarEmpresa');
   //Registra una empresa
-  Route::post('/registro', 'Auth\RegisterEmpresaController@create');
+  Route::post('/registro', 'EmpresaControllerController@create');
   //Conectarse con una empresa
-  Route::post('/login', 'Auth\LoginEmpresaController@loginEmpresa');
+  Route::post('/login', 'EmpresaController@loginEmpresa');
   
 });

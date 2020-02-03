@@ -3,18 +3,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PruebaController;
 Route::group(['middleware'=>['cors']], function (){
     //Saca ofertas por popularidad
-    Route::get('/ordenadas', 'OfertasPopularidadController@ofertasOrdenadas');
+    Route::get('/ordenadas', 'OfertasTrabajosController@ofertasOrdenadas');
 
     //Saca todas las ciudades
-    Route::get('/ciudades', 'OfertasCiudadsController@ofertasCiudades');
+    Route::get('/ciudades', 'OfertasTrabajosController@ofertasCiudades');
 
     //Saca las ofertas de la ciudad por parametro
-    Route::get('/ciudad/{nombreciudad}', 'OfertasCiudadsController@ofertasCiudad');
+    Route::get('/ciudad/{nombreciudad}', 'OfertasTrabajosController@ofertasCiudad');
 
     //Saca las ofertas que esten anunciado
-    Route::get('/anuncio', 'OfertasAnunciosController@ofertasAnuncios');
+    Route::get('/anuncio', 'OfertasTrabajosController@ofertasAnuncios');
 
     //Saca las ofertas de los puestos de trabajo por parametro
-    Route::get('/puesto/{puesto}', 'OfertasPuestosController@ofertasPuesto');
+    Route::get('/puesto/{puesto}', 'OfertasTrabajosController@ofertasPuesto');
 
 });
