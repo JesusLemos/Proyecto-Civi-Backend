@@ -259,6 +259,6 @@ class EmpresaController extends Controller
                 ->update(['estado' =>$numSolicitud{'estado'}]);
                 return response('Se ha completado corretamente');
             }
-                // return $comprobarEstado;
+                
         }
 }
