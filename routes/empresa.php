@@ -18,7 +18,7 @@ Route::group(['middleware'=>['cors']], function (){
   Route::post('/desconectarempresa', 'EmpresaController@DesconectarEmpresa');
   });
   //Registra una empresa
-  Route::post('/registro', 'EmpresaControllerController@create');
+  Route::post('/registro', 'EmpresaController@create');
   //Conectarse con una empresa
   Route::post('/login', 'EmpresaController@loginEmpresa');
   

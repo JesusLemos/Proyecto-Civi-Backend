@@ -15,6 +15,7 @@ class OfertasTrabajosController extends Controller
     {
         try{
         $ofertasOrdenadas = DB::table('oferta_trabajos')
+        ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
             ->orderBy('popularidad', 'desc')
             ->get();
         }
@@ -48,9 +49,9 @@ class OfertasTrabajosController extends Controller
     public function ofertasCiudad($nombreciudad)
     {
         $ofertasPorCiudad = DB::table('oferta_trabajos')
-            ->join('ciudads', 'oferta_trabajos.id_ciudad', '=', 'ciudads.id')
-            ->orderBy('ciudads.nombre')
-            ->where('ciudads.nombre', '=', $nombreciudad)
+            ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
+            ->orderBy('ciudades.nombre')
+            ->where('ciudades.nombre', '=', $nombreciudad)
             ->get();
 
         return $ofertasPorCiudad;
@@ -61,6 +62,7 @@ class OfertasTrabajosController extends Controller
         public function ofertasAnuncios(){
             try{
             $ofertasAnuncios= DB::table('oferta_trabajos')
+            ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
             ->where('anuncio', '=', true)
             ->get();
             return $ofertasAnuncios;
@@ -80,6 +82,7 @@ class OfertasTrabajosController extends Controller
         try{
         $ofertasPorPuesto = DB::table('oferta_trabajos')
             ->join('categoria_trabajos', 'categoria_trabajos.id', '=', 'oferta_trabajos.id_categoria')
+            ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
             ->where('categoria_trabajos.nombre', '=', $puesto)
             ->get();
 
