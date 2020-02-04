@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class OfertasTrabajosController extends Controller
 {
     //1-Ofertas popularidad, 2-Oferta todas las ciudades, 3-Oferta por ciudad
-    //4- Oferta por anuncio 5-Oferta por puesto de trabajo
+    //4- Oferta por anuncio 5-Oferta por puesto de trabajo, 6- Todas las ofertas
 
     //1-Ofertas popularidad
 
@@ -94,4 +94,18 @@ class OfertasTrabajosController extends Controller
       }
     }
 
+ //6- Todas las ofertas
+    public function todasOfertas()
+    {
+        try{
+        $ofertasOrdenadas = DB::table('oferta_trabajos')
+        ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
+            ->get();
+        }
+        catch(\Illuminate\Database\QueryException $ex){ 
+            return ($ex->getMessage()); 
+          }
+
+        return $ofertasOrdenadas;
+    }
 }

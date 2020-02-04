@@ -16,5 +16,6 @@ Route::group(['middleware'=>['cors']], function (){
 
     //Saca las ofertas de los puestos de trabajo por parametro
     Route::get('/puesto/{puesto}', 'OfertasTrabajosController@ofertasPuesto');
+    Route::get('/ofertas', 'OfertasTrabajosController@todasOfertas');
 
 });
