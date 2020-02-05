@@ -75,7 +75,12 @@ class EmpresaController extends Controller
                    $actualizarToken= DB::table('empresas')
                    ->where('email', '=', $body{'email'})
                     ->update(['remember_token'=>$generarToken]);
-                   return 'Te has conectado correctamente';
+
+                   $empresaToken= DB::table('empresas')
+                ->where('email', '=', $body{'email'})
+                ->get();
+
+                   return $empresaToken;
                
                 }else{
                   

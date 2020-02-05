@@ -79,7 +79,11 @@ class UsuarioController extends Controller
                $actualizarToken= DB::table('usuarios')
                ->where('email', '=', $body{'email'})
                 ->update(['remember_token'=>$generarToken]);
-               return 'Te has conectado correctamente';
+
+                $usuarioToken = DB::table('usuarios')
+                ->where('email', '=', $body{'email'})
+                ->get();
+               return $usuarioToken;
           
             }else{
               
