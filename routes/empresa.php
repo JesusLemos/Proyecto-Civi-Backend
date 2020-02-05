@@ -13,10 +13,11 @@ Route::group(['middleware'=>['cors']], function (){
   //Acepta o rechaza solicitudes
   Route::post('/cambiarsolicitud', 'EmpresaController@AdministrarSolicitud');
   Route::post('/modificarperfil', 'EmpresaController@CambiarPerfilEmpresa');
-  Route::post('/borrarsolicitud', 'EmpresaController Controller@borrarSolicitud');
+  Route::post('/borrarsolicitud', 'EmpresaController@borrarSolicitud');
   Route::post('/borrarofertatrabajo', 'EmpresaController@borrarOfertaTrabajo');
-  Route::post('/desconectarempresa', 'EmpresaController@DesconectarEmpresa');
-  });
+});
+  //Desconectar Empresa
+Route::post('/desconectarempresa', 'EmpresaController@DesconectarEmpresa');
   //Registra una empresa
   Route::post('/registro', 'EmpresaController@create');
   //Conectarse con una empresa

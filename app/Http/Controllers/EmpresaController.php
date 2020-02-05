@@ -192,9 +192,9 @@ class EmpresaController extends Controller
                 ->where('solicitudes.id', '=', $body{'id'})
                 ->where('oferta_trabajos.id_empresa', '=', $body{'id_empresa'})
                 ->update(['solicitudes.visible_empresa' => 0]);
-                return response('Se ha borrado correctamente');
+                return ['Mensaje'=>'Se ha borrado correctamente'];
             }else{
-                return response(count($comprobarSolicitud));
+                return ['Mensaje'=>count($comprobarSolicitud)];
             }
         }
 
@@ -230,15 +230,14 @@ class EmpresaController extends Controller
                 DB::table('empresas')
                 ->where('id', '=', $empresa{'id'})
                 ->update(['nif' =>$empresa{'nif'},
-                'contrasenia' =>encrypt($empresa{'contrasenia'}),
                 'foto' =>$empresa{'foto'},
                 'nombre_empresa' =>$empresa{'nombre_empresa'},
                 'descripcion_empresa' =>$empresa{'descripcion_empresa'},
                 'id_categoria' =>$empresa{'id_categoria'}]);
-                return response('Se ha modificado el perfil correctamente');
+                return ['Mensaje'=>'Se ha modificado el perfil correctamente'];
             }else{
     
-                return response('Se ha producido un error');
+                return ['Mensaje'=>'Se ha producido un error'];
             }
         }
         
@@ -255,14 +254,14 @@ class EmpresaController extends Controller
              if($comprobarEstado[0]->estado === 'Aceptado' || $comprobarEstado[0]->estado === 'Rechazado' ){
              
             
-                return response('Esta oferta ya ha sido aceptada o rechazada');
+                return ['Mensaje'=>'Esta oferta ya ha sido aceptada o rechazada'];
             }else{
                 DB::table('solicitudes')
                 ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
                 ->where('solicitudes.id', '=', $numSolicitud{'id'})
                 ->where('oferta_trabajos.id_empresa', '=', $numSolicitud{'id_empresa'})
                 ->update(['estado' =>$numSolicitud{'estado'}]);
-                return response('Se ha completado corretamente');
+                return ['Mensaje'=>'Se ha completado corretamente'];
             }
                 
         }

@@ -190,13 +190,12 @@ class UsuarioController extends Controller
         ->where('id', '=', $usuario{'id'})
         ->update(['nombre_usuario' =>$usuario{'nombre_usuario'},
         'apellido' =>$usuario{'apellido'},
-        'contrasenia' =>encrypt($usuario{'contrasenia'}),
         'dni' =>$usuario{'dni'},
         'descripcion' =>$usuario{'descripcion'},
         'telefono' =>$usuario{'telefono'},
         'foto' =>$usuario{'foto'},
         'fecha_nacimiento' =>$usuario{'fecha_nacimiento'}]);
-            return response('Se ha modificado el perfil correctamente');
+            return ['mensaje'=>'Se ha modificado el perfil correctamente'];
         }else{
 
             return response('Se ha producido un error');
