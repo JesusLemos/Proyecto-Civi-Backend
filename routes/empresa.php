@@ -8,6 +8,7 @@ Route::group(['middleware'=>['cors']], function (){
   Route::post('/crearoferta', 'EmpresaController@CrearOferta');
     //Ver todas las solicitudes por parte de la empresa
   Route::get('/versolicitudes/{id}', 'EmpresaController@VerSolicitudesEmpresas');
+  Route::get('/verofertas/{id}', 'EmpresaController@VerOfertasTrabajo');
   //ver perfil de la empresa
   Route::get('/verperfil/{id}', 'EmpresaController@verPerfilEmpresa');
   //Acepta o rechaza solicitudes

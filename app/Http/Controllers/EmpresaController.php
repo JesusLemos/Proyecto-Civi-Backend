@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Empresa;
+use App\OfertaTrabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -212,9 +213,9 @@ class EmpresaController extends Controller
                 ->where('id', '=', $body{'id'})
                 ->where('id_empresa', '=', $body{'id_empresa'})
                 ->update(['visible_empresa' => 0, 'visible_usuario'=> 0]);
-                return response('Se ha borrado correctamente');
+                return ['Mensaje'=>'Se ha borrado correctamente'];
             }else{
-                return response(count($comprobarSolicitud));
+                return ['Mensaje'=>count($comprobarSolicitud)];
             }
         }
         //9-Modificar perfil
@@ -264,5 +265,30 @@ class EmpresaController extends Controller
                 return ['Mensaje'=>'Se ha completado corretamente'];
             }
                 
+        }
+
+
+        public function VerOfertasTrabajo($id){
+       
+            $TodasLasSolicitudes= DB::table('oferta_trabajos')
+            ->join('empresas', 'oferta_trabajos.id_empresa', '=', 'empresas.id')
+            ->where('oferta_trabajos.id_empresa', '=', $id)
+            ->where('oferta_trabajos.visible_empresa','=', true)
+            // ->where('oferta.visible_empresa','=', true)
+            ->select('oferta_trabajos.id as id_trabajos',
+            'oferta_trabajos.titulo  as titulo',
+            'oferta_trabajos.descripcion_oferta as descripcion_oferta',
+            'oferta_trabajos.popularidad as popularidad',
+            'oferta_trabajos.anuncio as anuncio',
+            'oferta_trabajos.fecha_publicacion as fecha_publicacion',
+            'empresas.id as num_empresa',
+            'empresas.nif as nif',
+            'empresas.email as email',
+            'empresas.foto as foto',
+            'empresas.nombre_empresa as nombre_empresa',
+            'empresas.descripcion_empresa as descripcion_empresa',
+            )
+            ->get();
+            return $TodasLasSolicitudes;
         }
 }

@@ -170,9 +170,9 @@ class UsuarioController extends Controller
             ->where('id', '=', $body{'id'})
             ->where('id_usuario', '=', $body{'id_usuario'})
             ->update(['visible_usuario' => 0]);
-            return response('Se ha borrado correctamente');
+            return ['Mensaje' =>'Se ha borrado correctamente'];
         }else{
-            return response('Ha ocurrido un error');
+            return ['Mensaje'=>'Ha ocurrido un error'];
         }
     }
 
@@ -236,13 +236,13 @@ class UsuarioController extends Controller
                 if($comprobarEstado[0]->estado === 'Aceptado' || $comprobarEstado[0]->estado === 'Rechazado' ){
                  
                 
-                    return response('Esta oferta ya ha sido aceptada o rechazada');
+                    return ['Mensaje'=>'Esta oferta ya ha sido aceptada o rechazada'];
                 }else{
                     DB::table('solicitudes')
                     ->where('id', '=', $numSolicitud{'id'})
                     ->where('id_usuario', '=', $numSolicitud{'id_usuario'})
                     ->update(['estado' =>'Rechazado']);
-                    return response('Se ha completado corretamente');
+                    return ['Mensaje'=>'Se ha completado corretamente'];
                 }
                     // return $comprobarEstado;
             }

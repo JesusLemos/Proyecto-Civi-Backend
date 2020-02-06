@@ -18,7 +18,7 @@ Route::group(['middleware'=>['cors']], function (){
   //Muestra el perfil de un usuario
   Route::get('/verperfil/{id}', 'UsuarioController@verPerfilUsuario');
   Route::post('/modificarperfil', 'UsuarioController@CambiarPerfilUsuario');
-
+  
 });
   //Desconectar Usuario
 Route::post('/desconectarusuario', 'UsuarioController@DesconectarUsuario');
