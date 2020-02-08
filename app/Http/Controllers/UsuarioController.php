@@ -106,11 +106,11 @@ class UsuarioController extends Controller
             $comprobarUsuario = DB::table('usuarios')
             ->where('id', '=', $body{'id'})
             ->update(['remember_token'=>null]);
-            return response('Te has desconectado correctamente');
+            return ['Mensaje'=>'Te has desconectado correctamente'];
         }else{
-            return response('Ha ocurrido un error');
+            return ['Mensaje'=>'Ha ocurrido un error'];
         }
-        return $comprobarUsuario;
+        // return $comprobarUsuario;
     }
     //4-Ver perfil de usuario 
     public function verPerfilUsuario($id){
@@ -195,10 +195,10 @@ class UsuarioController extends Controller
         'telefono' =>$usuario{'telefono'},
         'foto' =>$usuario{'foto'},
         'fecha_nacimiento' =>$usuario{'fecha_nacimiento'}]);
-            return ['mensaje'=>'Se ha modificado el perfil correctamente'];
+            return ['Mensaje'=>'Se ha modificado el perfil correctamente'];
         }else{
 
-            return response('Se ha producido un error');
+            return ['Mensaje'=>'Se ha producido un error']  ;
         }
       
     }
@@ -214,7 +214,7 @@ class UsuarioController extends Controller
        
         if($comprobarUsuarioExistente){
 
-            
+            DB::table('oferta_trabajos')->where('id', '=', $body{'id_oferta_trabajo'})->update(['visible_usuario' =>0]);
                 return Solicitud::create([ 
                     'id_usuario'=>$comprobarUsuarioExistente[0]->id,
                     'id_oferta_trabajo'=>$comprobarPuestoTrabajo[0]->id,
