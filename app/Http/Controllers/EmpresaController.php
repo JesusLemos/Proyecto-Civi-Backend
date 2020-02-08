@@ -174,7 +174,13 @@ class EmpresaController extends Controller
              ,'usuarios.fecha_nacimiento as usuarios_fecha_nacimiento'
              ,'usuarios.remember_token as usuarios_token')
             ->get();
-            return $TodasLasSolicitudes;
+            if(count($TodasLasSolicitudes)===1){
+
+                return $TodasLasSolicitudes;
+            }else{
+                return ['Mensaje'=>'No se ha encontrado ninguna solicitud'];
+            }
+            // return $TodasLasSolicitudes;
         }
 
         //7-Borrar Solicitud
@@ -289,6 +295,12 @@ class EmpresaController extends Controller
             'empresas.descripcion_empresa as descripcion_empresa',
             )
             ->get();
-            return $TodasLasSolicitudes;
+
+            if(count($TodasLasSolicitudes) === 1 ){
+
+                return $TodasLasSolicitudes;
+            }else{
+                return ['Mensaje'=>'No se ha encontrado la oferta'];
+            }
         }
 }

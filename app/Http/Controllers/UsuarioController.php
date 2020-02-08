@@ -87,12 +87,12 @@ class UsuarioController extends Controller
           
             }else{
               
-            return  response('Contrasenia o correo invalido');
+            return  ['Mensaje'=>'Contrasenia o correo invalido'];
           
         }
 
         } catch (\Exception $e) {
-            return response('Ha ocurrido un error');
+            return ['Mensaje'=>'Ha ocurrido un error'];
         }
     }
 
@@ -154,7 +154,13 @@ class UsuarioController extends Controller
          ,'usuarios.fecha_nacimiento as usuarios_fecha_nacimiento'
          ,'usuarios.remember_token as usuarios_token')
         ->get();
-        return $TodasLasSolicitudes;
+
+        if(count($TodasLasSolicitudes)===1){
+
+            return $TodasLasSolicitudes;
+        }else{
+            return ['Mensaje'=>'No se ha encontrado ninguna solicitud'];
+        }
 
     }
 
@@ -210,7 +216,7 @@ class UsuarioController extends Controller
         // $header = $request->header('authorization');
         $comprobarPuestoTrabajo= DB::table('oferta_trabajos')->where('id', '=', $body{'id_oferta_trabajo'})->get();
        $comprobarUsuarioExistente= DB::table('usuarios')->where('id', '=', $body{'id_usuario'})->get();
-       if($comprobarPuestoTrabajo){
+       if(count($comprobarPuestoTrabajo)===1){
        
         if($comprobarUsuarioExistente){
 
