@@ -11,7 +11,7 @@ class EmpresaController extends Controller
 {
     // 1-Registro, 2-Conectarse, 3-Desconectarse,4-Ver perfil de empresa ,5-Crear Oferta, 
     //6-Ver Solicitudes mandado por usuarios, 7-Borrar Solicitud,8-Eliminar oferta de trabajo
-    //9-Modificar perfil,10-Administrar Solicitudes de los usuarios
+    //9-Modificar perfil,10-Administrar Solicitudes de los usuarios,11-Ver ofertas disponibles
 
     //1-Registro
     public function create(Request $data)
@@ -174,7 +174,7 @@ class EmpresaController extends Controller
              ,'usuarios.fecha_nacimiento as usuarios_fecha_nacimiento'
              ,'usuarios.remember_token as usuarios_token')
             ->get();
-            if(count($TodasLasSolicitudes)===1){
+            if(count($TodasLasSolicitudes) !== 0){
 
                 return $TodasLasSolicitudes;
             }else{
@@ -273,7 +273,7 @@ class EmpresaController extends Controller
                 
         }
 
-
+        //11-Ver ofertas disponibles
         public function VerOfertasTrabajo($id){
        
             $TodasLasSolicitudes= DB::table('oferta_trabajos')
@@ -296,7 +296,7 @@ class EmpresaController extends Controller
             )
             ->get();
 
-            if(count($TodasLasSolicitudes) === 1 ){
+            if(count($TodasLasSolicitudes) !== 0 ){
 
                 return $TodasLasSolicitudes;
             }else{
