@@ -14,12 +14,12 @@ Route::group(['middleware'=>['cors']], function (){
   Route::post('/borrarsolicitud', 'UsuarioController@borrarSolicitud');
   
   //Muestra las solicitudes de un usuario
+  Route::get('/versolicitudes/{id}', 'UsuarioController@VerSolicitudesUsuario');
   //Muestra el perfil de un usuario
   Route::get('/verperfil/{id}', 'UsuarioController@verPerfilUsuario');
   Route::post('/modificarperfil', 'UsuarioController@CambiarPerfilUsuario');
   
 });
-Route::get('/versolicitudes/{id}', 'UsuarioController@VerSolicitudesUsuario');
 
 Route::post('/desconectarusuario', 'UsuarioController@DesconectarUsuario');
   //Desconectar Usuario

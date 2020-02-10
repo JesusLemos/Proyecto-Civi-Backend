@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class OfertasTrabajosController extends Controller
 {
     //1-Ofertas popularidad, 2-Oferta todas las ciudades, 3-Oferta por ciudad
-    //4- Oferta por anuncio 5-Oferta por puesto de trabajo, 6- Todas las ofertas
+    //4- Oferta por anuncio 5-Oferta por puesto de trabajo
 
     //1-Ofertas popularidad
 
@@ -16,7 +16,19 @@ class OfertasTrabajosController extends Controller
         try{
         $ofertasOrdenadas = DB::table('oferta_trabajos')
         ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
-            ->orderBy('popularidad', 'desc')
+            ->orderBy('oferta_trabajos.popularidad', 'desc')
+            ->select('oferta_trabajos.id as id_oferta' 
+            , 'oferta_trabajos.titulo as titulo'
+            , 'oferta_trabajos.popularidad as popularidad'
+            , 'oferta_trabajos.anuncio as anuncio'
+            ,'oferta_trabajos.id_empresa as id_empresa'
+            
+            , 'oferta_trabajos.descripcion_oferta as descripcion_oferta'
+            , 'oferta_trabajos.fecha_publicacion as fecha_publicacion'
+            ,  'oferta_trabajos.visible_usuario as visible_usuario'
+            , 'oferta_trabajos.visible_empresa as visible_empresa'
+            , 'ciudades.nombre as nombre')
+            // ->orderBy('id')
             ->get();
         }
         catch(\Illuminate\Database\QueryException $ex){ 
@@ -94,18 +106,5 @@ class OfertasTrabajosController extends Controller
       }
     }
 
- //6- Todas las ofertas
-    public function todasOfertas()
-    {
-        try{
-        $ofertasOrdenadas = DB::table('oferta_trabajos')
-        ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
-            ->get();
-        }
-        catch(\Illuminate\Database\QueryException $ex){ 
-            return ($ex->getMessage()); 
-          }
-
-        return $ofertasOrdenadas;
-    }
+ 
 }
