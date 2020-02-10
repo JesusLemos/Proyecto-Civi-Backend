@@ -20,4 +20,10 @@ Route::group(['middleware' => ['cors']], function () {
     Route::get('/puesto/{puesto}', 'OfertasTrabajosController@ofertasPuesto');
 
     Route::get('/omni/{omni}', 'OfertasTrabajosController@omniFiltro');
+
+    Route::get('/salario/asc/{salario}', 'OfertasTrabajosController@ofertasSalarioAsc');
+
+    Route::get('/salario/desc/{salario}', 'OfertasTrabajosController@ofertasSalarioDesc');
+
+    Route::get('/salario-entre/asc/{salarioA}/{salarioB}', 'OfertasTrabajosController@ofertasSalarioEntreAsc');
 });

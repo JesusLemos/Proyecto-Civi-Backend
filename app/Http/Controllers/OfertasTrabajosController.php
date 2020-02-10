@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class OfertasTrabajosController extends Controller
 {
+    //0-filtro general de ofertas
     //1-Ofertas popularidad, 2-Oferta todas las ciudades, 3-Oferta por ciudad
     //4- Oferta por anuncio 5-Oferta por puesto de trabajo
+    //5- Oferta por salario
 
 
     //0-Filtro general de ofertas
@@ -134,6 +136,85 @@ class OfertasTrabajosController extends Controller
                 ->get();
 
             return $ofertasPorPuesto;
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return ($ex->getMessage());
+            // Note any method of class PDOException can be called on $ex.
+        }
+    }
+
+    public function ofertasSalarioAsc($salario)
+    {
+        try {
+            $ofertasSalario = DB::table('oferta_trabajos')
+                ->where('oferta_trabajos.salario', '<', $salario)
+                ->orderBy('oferta_trabajos.salario', 'Asc')
+                ->select(
+                    'oferta_trabajos.id as id_oferta',
+                    'oferta_trabajos.titulo as titulo',
+                    'oferta_trabajos.popularidad as popularidad',
+                    'oferta_trabajos.anuncio as anuncio',
+                    'oferta_trabajos.id_empresa as id_empresa',
+                    'oferta_trabajos.descripcion_oferta as descripcion_oferta',
+                    'oferta_trabajos.fecha_publicacion as fecha_publicacion',
+                    'oferta_trabajos.salario as salario',
+                    'oferta_trabajos.visible_usuario as visible_usuario',
+                    'oferta_trabajos.visible_empresa as visible_empresa',
+                )
+                ->get();
+
+            return $ofertasSalario;
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return ($ex->getMessage());
+            // Note any method of class PDOException can be called on $ex.
+        }
+    }
+    public function ofertasSalarioDesc($salario)
+    {
+        try {
+            $ofertasSalario = DB::table('oferta_trabajos')
+                ->where('oferta_trabajos.salario', '<', $salario)
+                ->orderBy('oferta_trabajos.salario', 'Desc')
+                ->select(
+                    'oferta_trabajos.id as id_oferta',
+                    'oferta_trabajos.titulo as titulo',
+                    'oferta_trabajos.popularidad as popularidad',
+                    'oferta_trabajos.anuncio as anuncio',
+                    'oferta_trabajos.id_empresa as id_empresa',
+                    'oferta_trabajos.descripcion_oferta as descripcion_oferta',
+                    'oferta_trabajos.fecha_publicacion as fecha_publicacion',
+                    'oferta_trabajos.salario as salario',
+                    'oferta_trabajos.visible_usuario as visible_usuario',
+                    'oferta_trabajos.visible_empresa as visible_empresa',
+                )
+                ->get();
+
+            return $ofertasSalario;
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return ($ex->getMessage());
+            // Note any method of class PDOException can be called on $ex.
+        }
+    }
+    public function ofertasSalarioEntreAsc($salarioA, $salarioB)
+    {
+        try {
+            $ofertasSalario = DB::table('oferta_trabajos')
+                ->whereBetween('oferta_trabajos.salario', [$salarioA, $salarioB])
+                ->orderBy('oferta_trabajos.salario', 'Asc')
+                ->select(
+                    'oferta_trabajos.id as id_oferta',
+                    'oferta_trabajos.titulo as titulo',
+                    'oferta_trabajos.popularidad as popularidad',
+                    'oferta_trabajos.anuncio as anuncio',
+                    'oferta_trabajos.id_empresa as id_empresa',
+                    'oferta_trabajos.descripcion_oferta as descripcion_oferta',
+                    'oferta_trabajos.fecha_publicacion as fecha_publicacion',
+                    'oferta_trabajos.salario as salario',
+                    'oferta_trabajos.visible_usuario as visible_usuario',
+                    'oferta_trabajos.visible_empresa as visible_empresa',
+                )
+                ->get();
+
+            return $ofertasSalario;
         } catch (\Illuminate\Database\QueryException $ex) {
             return ($ex->getMessage());
             // Note any method of class PDOException can be called on $ex.
