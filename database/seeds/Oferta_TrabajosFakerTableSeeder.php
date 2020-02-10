@@ -14,7 +14,7 @@ class Oferta_TrabajosFakerTableSeeder extends Seeder
      */
     public function run()
     {
-        $numFijo=true;
+        $numFijo = true;
         $faker = Faker::create('es_ES');
         foreach (range(1, 20) as $index) {
             DB::table('oferta_trabajos')->insert([
@@ -26,9 +26,10 @@ class Oferta_TrabajosFakerTableSeeder extends Seeder
                 'id_categoria' =>  $faker->numberBetween($min = 1, $max = 10),
                 'id_ciudad' =>  $faker->numberBetween($min = 1, $max = 10),
                 'fecha_publicacion' => $faker->dateTimeBetween($startDate = '-34 years', $endDate = 'now', $timezone = null),
-                'visible_usuario'=>$numFijo,
-                'visible_empresa'=>$numFijo
-                ]);
-            }
+                'salario' => $faker->numberBetween($min = 1000, $max = 9000),
+                'visible_usuario' => $numFijo,
+                'visible_empresa' => $numFijo
+            ]);
+        }
     }
 }

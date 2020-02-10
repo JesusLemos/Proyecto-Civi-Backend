@@ -24,6 +24,7 @@ class CreateOfertaTrabajosTable extends Migration
             $table->unsignedBigInteger('id_ciudad');
             $table->index(['id_empresa', 'id_categoria', 'id_ciudad']);
             $table->dateTime('fecha_publicacion');
+            $table->integer('salario');
             $table->boolean('visible_usuario');
             $table->boolean('visible_empresa');
             $table->timestamps();
