@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Usuario;
+use App\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -126,7 +127,7 @@ class UsuarioController extends Controller
         ->join('oferta_trabajos', 'oferta_trabajos.id', '=', 'solicitudes.id_oferta_trabajo')
         ->join('usuarios', 'usuarios.id', '=', 'solicitudes.id_usuario' )
         ->where('solicitudes.id_usuario', '=', $id)
-        ->where('oferta_trabajos.visible_usuario','=', true)
+        // ->where('oferta_trabajos.visible_usuario','=', true)
         ->where('solicitudes.visible_usuario','=', true)
          ->select('solicitudes.id as solicitudes_num_solicitud'
          ,'solicitudes.id_usuario as solicitudes_usuario'
@@ -155,7 +156,7 @@ class UsuarioController extends Controller
          ,'usuarios.remember_token as usuarios_token')
         ->get();
 
-        if(count($TodasLasSolicitudes)===1){
+        if(count($TodasLasSolicitudes)!==0){
 
             return $TodasLasSolicitudes;
         }else{
@@ -218,14 +219,17 @@ class UsuarioController extends Controller
        $comprobarUsuarioExistente= DB::table('usuarios')->where('id', '=', $body{'id_usuario'})->get();
        if(count($comprobarPuestoTrabajo)===1){
        
-        if($comprobarUsuarioExistente){
+        if(count($comprobarUsuarioExistente)===1){
 
-            DB::table('oferta_trabajos')->where('id', '=', $body{'id_oferta_trabajo'})->update(['visible_usuario' =>0]);
-                return Solicitud::create([ 
+            // DB::table('oferta_trabajos')->where('id', '=', $body{'id_oferta_trabajo'})->update(['visible_usuario' =>0]);
+                Solicitud::create([ 
                     'id_usuario'=>$comprobarUsuarioExistente[0]->id,
                     'id_oferta_trabajo'=>$comprobarPuestoTrabajo[0]->id,
-                    'estado'=>"Pendiente"
+                    'estado'=>"Pendiente",
+                    'visible_usuario'=> 1,
+                    'visible_empresa'=> 1
                                 ]);
+                                return ['Mensaje'=>'Se ha solicitado la oferta de trabajo correctamente'];
                   }      
                }
             }

@@ -16,7 +16,19 @@ class OfertasTrabajosController extends Controller
         try{
         $ofertasOrdenadas = DB::table('oferta_trabajos')
         ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
-            ->orderBy('popularidad', 'desc')
+            ->orderBy('oferta_trabajos.popularidad', 'desc')
+            ->select('oferta_trabajos.id as id_oferta' 
+            , 'oferta_trabajos.titulo as titulo'
+            , 'oferta_trabajos.popularidad as popularidad'
+            , 'oferta_trabajos.anuncio as anuncio'
+            ,'oferta_trabajos.id_empresa as id_empresa'
+            
+            , 'oferta_trabajos.descripcion_oferta as descripcion_oferta'
+            , 'oferta_trabajos.fecha_publicacion as fecha_publicacion'
+            ,  'oferta_trabajos.visible_usuario as visible_usuario'
+            , 'oferta_trabajos.visible_empresa as visible_empresa'
+            , 'ciudades.nombre as nombre')
+            // ->orderBy('id')
             ->get();
         }
         catch(\Illuminate\Database\QueryException $ex){ 
