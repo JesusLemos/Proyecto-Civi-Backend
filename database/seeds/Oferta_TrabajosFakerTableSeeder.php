@@ -15,7 +15,7 @@ class Oferta_TrabajosFakerTableSeeder extends Seeder
     public function run()
     {
         $numFijo = true;
-        $faker = Faker::create('es_ES');
+        $faker = Faker::create('es_ESz');
         foreach (range(1, 20) as $index) {
             DB::table('oferta_trabajos')->insert([
                 'titulo' => $faker->sentence($nbWords = 3, $variableNbWords = true),
