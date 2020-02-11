@@ -15,11 +15,11 @@ class Oferta_TrabajosFakerTableSeeder extends Seeder
     public function run()
     {
         $numFijo = true;
-        $faker = Faker::create('es_ESz');
+        $faker = Faker::create('es_ES');
         foreach (range(1, 20) as $index) {
             DB::table('oferta_trabajos')->insert([
                 'titulo' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-                'descripcion_oferta' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'descripcion_oferta' => $faker->sentence($nbWords = 22, $variableNbWords = true),
                 'popularidad' => $faker->numberBetween($min = 0, $max = 100),
                 'anuncio' => $faker->numberBetween($min = 0, $max = 1),
                 'id_empresa' => $faker->numberBetween($min = 1, $max = 10),
