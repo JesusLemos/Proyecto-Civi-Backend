@@ -19,9 +19,18 @@ class UsuarioController extends Controller
     {
      
         try{
+
+            $comprobarUsuarioExistente = DB::table('usuarios')
+            ->where('email', '=', $data{'email'})
+            ->get();
+           
+            if(count($comprobarUsuarioExistente) !== 0){
+                return ['Mensaje'=>'El email ya existe'];
+            }
             if(strlen (  $data{'contrasenia'} ) <8){
                 return ['Mensaje'=>'La contraseña tiene que ser mayor de 8 caracteres'];
             }
+            
 
             $data->validate([
                 'nombre_usuario' => 'required|string|max:25',

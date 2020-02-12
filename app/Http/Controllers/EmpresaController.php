@@ -18,11 +18,21 @@ class EmpresaController extends Controller
     {
     
         try{
+
+            $comprobarUsuarioExistente = DB::table('empresas')
+            ->where('email', '=', $data{'email'})
+            ->get();
+           
+            if(count($comprobarUsuarioExistente) !== 0){
+                return ['Mensaje'=>'El email ya existe'];
+            }
+
+
             $comprobarCategoria=DB::table('categoria_trabajos')
             ->where('id', '=', $data{'id_categoria'})
             ->get();
 
-            if(count($comprobarCategoria) ===0){
+            if(count($comprobarCategoria) === 0 ){
                  return ['Mensaje'=>'No existe esa categoria'];
                 // var_dump(count($comprobarCategoria));
             }
