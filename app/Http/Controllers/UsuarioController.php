@@ -19,6 +19,9 @@ class UsuarioController extends Controller
     {
      
         try{
+            if(strlen (  $data{'contrasenia'} ) <8){
+                return ['Mensaje'=>'La contraseña tiene que ser mayor de 8 caracteres'];
+            }
 
             $data->validate([
                 'nombre_usuario' => 'required|string|max:25',
@@ -49,7 +52,7 @@ class UsuarioController extends Controller
                 ]
              );
         } catch (\Exception $e) {
-          return $e->getMessage();
+          return ['Mensaje'=>'Dato invalido'];
 
     }
 }

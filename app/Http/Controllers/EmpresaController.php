@@ -23,9 +23,13 @@ class EmpresaController extends Controller
             ->get();
 
             if(count($comprobarCategoria) ===0){
-                //  return response('No existe esa categoria');
-                var_dump(count($comprobarCategoria));
+                 return ['Mensaje'=>'No existe esa categoria'];
+                // var_dump(count($comprobarCategoria));
             }
+                if(strlen (  $data{'contrasenia'} ) <8){
+                    return ['Mensaje'=>'La contraseña tiene que ser mayor de 8 caracteres'];
+                }
+
 
             $data->validate([
                 'nif' => 'required|string|max:25',
@@ -50,7 +54,7 @@ class EmpresaController extends Controller
              );
            
         } catch (\Exception $e) {
-          return $e->getMessage();
+          return ['Mensaje'=>'Dato invalido'];
     
       
         }
