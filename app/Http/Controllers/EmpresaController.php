@@ -33,7 +33,7 @@ class EmpresaController extends Controller
             ->get();
 
             if(count($comprobarCategoria) === 0 ){
-                 return ['Mensaje'=>'No existe esa categoria'];
+                     return ['Mensaje'=>'No existe esa categoria'];
                 // var_dump(count($comprobarCategoria));
             }
                 if(strlen (  $data{'contrasenia'} ) <8){
@@ -138,6 +138,7 @@ class EmpresaController extends Controller
             $oferta =$request->input();
             DB::table('oferta_trabajos')->insert([
                 ['titulo'=>$oferta{'titulo'},
+                'salario'=>$oferta{'salario'},
                 'descripcion_oferta'=>$oferta{'descripcion_oferta'},
                 'popularidad'=>$oferta{'popularidad'},
                 'anuncio'=>$oferta{'anuncio'},
@@ -145,9 +146,13 @@ class EmpresaController extends Controller
                 'id_categoria'=>$oferta{'id_categoria'},
                 'id_ciudad'=>$oferta{'id_ciudad'},
                 'fecha_publicacion'=>$oferta{'fecha_publicacion'},
+                'visible_usuario'=>1,
+                'visible_empresa'=>1,
                 'created_at'=>null,
                 'updated_at'=>null]
             ]);
+
+            return ['Mensaje'=>'Se ha creado correctamente'];
                
         }
 
