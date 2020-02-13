@@ -11,7 +11,21 @@ class OfertaTrabajo extends Model
     //     return $this->belongsToMany('App\Usuario', );
     // }
     
-   
+    protected $fillable = [
+        'titulo',
+        'salario', 
+        'descripcion_oferta', 
+        'popularidad', 
+        'anuncio', 
+        'id_empresa', 
+        'id_categoria', 
+        'id_ciudad', 
+        'fecha_publicacion',
+        'created_at',
+        'updated_at',
+        'visible_usuario',
+        'visible_empresa'
+    ];
     public function ciudad(){
          
         return $this->hasOne('App\Ciudad','id', 'id_ciudad' );

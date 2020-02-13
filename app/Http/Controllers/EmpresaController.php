@@ -18,12 +18,22 @@ class EmpresaController extends Controller
     {
     
         try{
+
+            $comprobarUsuarioExistente = DB::table('empresas')
+            ->where('email', '=', $data{'email'})
+            ->get();
+           
+            if(count($comprobarUsuarioExistente) !== 0){
+                return ['Mensaje'=>'El email ya existe'];
+            }
+
+
             $comprobarCategoria=DB::table('categoria_trabajos')
             ->where('id', '=', $data{'id_categoria'})
             ->get();
 
-            if(count($comprobarCategoria) ===0){
-                 return ['Mensaje'=>'No existe esa categoria'];
+            if(count($comprobarCategoria) === 0 ){
+                     return ['Mensaje'=>'No existe esa categoria'];
                 // var_dump(count($comprobarCategoria));
             }
                 if(strlen (  $data{'contrasenia'} ) <8){
@@ -35,7 +45,7 @@ class EmpresaController extends Controller
                 'nif' => 'required|string|max:25',
                 'email' => 'required|string|email|max:255|unique:usuarios',
                 'contrasenia' => 'required|min:8|string',
-                'foto' => 'required|string|max:255',
+                // 'foto' => 'required|string|max:255',
                 'nombre_empresa' => 'required|string|max:255',
                 'descripcion_empresa' => 'required|string|max:255'
                 
@@ -44,7 +54,7 @@ class EmpresaController extends Controller
                 'nif'=>$data{"nif"},
                 'email'=>$data{"email"},
                 'contrasenia'=>encrypt($data{"contrasenia"}),
-                'foto'=>$data{"foto"},
+                'foto'=>'',
                 'nombre_empresa'=>$data{"nombre_empresa"},
                 'descripcion_empresa'=>$data{"descripcion_empresa"},
                 'id_categoria'=>$data{"id_categoria"},
@@ -124,10 +134,30 @@ class EmpresaController extends Controller
         }
         //5-Crear oferta de trabajo
         public function CrearOferta(Request $request){
-        
+        try{
+
+      
             $oferta =$request->input();
+
+            $comprobarCategoria = DB::table('categoria_trabajos')
+            ->where('id', '=', $oferta{'id_categoria'})
+            ->get();
+
+            $comprobarCiudad = DB::table('ciudades')
+            ->where('id', '=', $oferta{'id_ciudad'})
+            ->get();
+
+            if(count($comprobarCategoria) === 0 ){
+                return ['Mensaje'=> 'No se ha encontrado esa categoria'];
+            }
+
+            if(count($comprobarCiudad) === 0 ){
+                return ['Mensaje'=> 'No se ha encontrado esa ciudad'];
+            }
+
             DB::table('oferta_trabajos')->insert([
                 ['titulo'=>$oferta{'titulo'},
+                'salario'=>$oferta{'salario'},
                 'descripcion_oferta'=>$oferta{'descripcion_oferta'},
                 'popularidad'=>$oferta{'popularidad'},
                 'anuncio'=>$oferta{'anuncio'},
@@ -135,12 +165,18 @@ class EmpresaController extends Controller
                 'id_categoria'=>$oferta{'id_categoria'},
                 'id_ciudad'=>$oferta{'id_ciudad'},
                 'fecha_publicacion'=>$oferta{'fecha_publicacion'},
+                'visible_usuario'=>1,
+                'visible_empresa'=>1,
                 'created_at'=>null,
                 'updated_at'=>null]
             ]);
-               
-        }
 
+            return ['Mensaje'=>'Se ha creado correctamente'];
+               
+        }catch (\Exception $e) {
+            return ['Mensaje'=>'Dato invalido'];
+        }
+    }
         
 
         //6-Ver solicitudes mandado por lo usuarios
