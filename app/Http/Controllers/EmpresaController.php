@@ -45,7 +45,7 @@ class EmpresaController extends Controller
                 'nif' => 'required|string|max:25',
                 'email' => 'required|string|email|max:255|unique:usuarios',
                 'contrasenia' => 'required|min:8|string',
-                'foto' => 'required|string|max:255',
+                // 'foto' => 'required|string|max:255',
                 'nombre_empresa' => 'required|string|max:255',
                 'descripcion_empresa' => 'required|string|max:255'
                 
@@ -54,7 +54,7 @@ class EmpresaController extends Controller
                 'nif'=>$data{"nif"},
                 'email'=>$data{"email"},
                 'contrasenia'=>encrypt($data{"contrasenia"}),
-                'foto'=>$data{"foto"},
+                'foto'=>'',
                 'nombre_empresa'=>$data{"nombre_empresa"},
                 'descripcion_empresa'=>$data{"descripcion_empresa"},
                 'id_categoria'=>$data{"id_categoria"},
@@ -134,8 +134,27 @@ class EmpresaController extends Controller
         }
         //5-Crear oferta de trabajo
         public function CrearOferta(Request $request){
-        
+        try{
+
+      
             $oferta =$request->input();
+
+            $comprobarCategoria = DB::table('categoria_trabajos')
+            ->where('id', '=', $oferta{'id_categoria'})
+            ->get();
+
+            $comprobarCiudad = DB::table('ciudades')
+            ->where('id', '=', $oferta{'id_ciudad'})
+            ->get();
+
+            if(count($comprobarCategoria) === 0 ){
+                return ['Mensaje'=> 'No se ha encontrado esa categoria'];
+            }
+
+            if(count($comprobarCiudad) === 0 ){
+                return ['Mensaje'=> 'No se ha encontrado esa ciudad'];
+            }
+
             DB::table('oferta_trabajos')->insert([
                 ['titulo'=>$oferta{'titulo'},
                 'salario'=>$oferta{'salario'},
@@ -154,8 +173,10 @@ class EmpresaController extends Controller
 
             return ['Mensaje'=>'Se ha creado correctamente'];
                
+        }catch (\Exception $e) {
+            return ['Mensaje'=>'Dato invalido'];
         }
-
+    }
         
 
         //6-Ver solicitudes mandado por lo usuarios

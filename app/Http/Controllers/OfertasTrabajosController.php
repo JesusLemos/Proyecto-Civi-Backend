@@ -101,7 +101,8 @@ class OfertasTrabajosController extends Controller
         $ofertasPorCiudad = DB::table('oferta_trabajos')
             ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
             ->orderBy('ciudades.nombre')
-            ->where('ciudades.nombre', '=', $nombreciudad)
+            // ->where('ciudades.nombre', '=', $nombreciudad)
+            ->Where('ciudades.nombre', 'like', '%' . $nombreciudad . '%')
             ->get();
 
         return $ofertasPorCiudad;
@@ -132,7 +133,8 @@ class OfertasTrabajosController extends Controller
             $ofertasPorPuesto = DB::table('oferta_trabajos')
                 ->join('categoria_trabajos', 'categoria_trabajos.id', '=', 'oferta_trabajos.id_categoria')
                 ->join('ciudades', 'oferta_trabajos.id_ciudad', '=', 'ciudades.id')
-                ->where('categoria_trabajos.nombre', '=', $puesto)
+                // ->where('categoria_trabajos.nombre', '=', $puesto)
+                ->Where('categoria_trabajos.nombre', 'like', '%' . $puesto . '%')
                 ->get();
 
             return $ofertasPorPuesto;

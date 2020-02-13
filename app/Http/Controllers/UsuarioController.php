@@ -41,7 +41,7 @@ class UsuarioController extends Controller
                 'descripcion' => 'required|string|max:255',
                 'telefono' => 'required|string|max:255',
                 'direccion' => 'required|string|max:255',
-                'foto' => 'required|string|max:255',
+                // 'foto' => 'required|string|max:255',
                 'fecha_nacimiento' => 'required|date',
             
                 ]);
@@ -54,7 +54,7 @@ class UsuarioController extends Controller
                 'descripcion'=>$data{"descripcion"},
                 'telefono'=>$data{"telefono"},
                 'direccion'=>$data{"direccion"},
-                'foto'=>$data{"foto"},
+                'foto'=>'',
                 'contrasenia'=>encrypt($data{"contrasenia"}),
                 'fecha_nacimiento'=>$data{"fecha_nacimiento"},  
            
